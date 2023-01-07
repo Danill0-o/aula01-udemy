@@ -5,7 +5,7 @@ rare_count = 0
 epic_count = 0
 legendary_count = 0
 
-for i in range(100):
+for i in range(1000):
     min_dmg = random.randint(1,20)
     max_dmg = random.randint(20,100)
     damage = random.randint(min_dmg,max_dmg)
@@ -36,7 +36,7 @@ for i in range(100):
         ice_sts = ice_atr()
 
     t_dmg = round((damage * spd_dmg) + fire_sts + ice_sts,1)
-    print("Your sword's status:\n")
+    #print("Your sword's status:\n")
 
     # Determine type of sword and increment appropriate count
     if t_dmg > 100 and t_dmg < 200:
