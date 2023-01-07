@@ -5,7 +5,7 @@ rare_count = 0
 epic_count = 0
 legendary_count = 0
 
-for i in range(1000):
+for i in range(100):
     min_dmg = random.randint(1,20)
     max_dmg = random.randint(20,100)
     damage = random.randint(min_dmg,max_dmg)
