@@ -9,13 +9,29 @@ underline = list("_" * lenword)#cria uma lista de "_" de tamanho correpondente.
 print(letter_list)
 print(underline)
 
-guess = input("Guess a letter.")
 
-while guess in letter_list:
-    index = letter_list.index(guess)
-    underline[index] = guess
-
-#     for index, _ in enumerate(letter_list):
-#         underline.insert(index, guess)
-print(letter_list)
-print(underline)
+#while "_" in underline:
+top   = [' ╠═══╦']
+base2 = [' ║ ']
+base1 = [' ║ ']
+base  = ['_║_']
+while "_" in underline:
+    guess = input("Guess a letter.")
+    num = -1
+    for i in letter_list:
+        num += 1
+        if guess == i:
+            underline[num] = guess
+            print(underline)
+    if guess not in letter_list:
+        for not_in_list in range(6):
+            print(top)
+            print(base2)
+            print(base1)
+            print(base)
+#print(letter_list)
+#print(underline)
+#print('''  ╠═══╦  
+#           ║   o
+#           ║  /|\
+#          _║_ / \    ''')
