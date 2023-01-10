@@ -10,6 +10,12 @@ print(letter_list)
 print(underline)
 
 guess = input("Guess a letter.")
-if guess in letter_list:
-    
-    underline.replace()
+
+while guess in letter_list:
+    index = letter_list.index(guess)
+    underline[index] = guess
+
+#     for index, _ in enumerate(letter_list):
+#         underline.insert(index, guess)
+print(letter_list)
+print(underline)
