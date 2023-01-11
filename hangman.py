@@ -6,21 +6,12 @@ lenword = int(len(word))#mede o qts caracteres essa palavra têm.
 letter_list = list(word)#transforma a palavra em uma lista de letras.
 underline = list("_" * lenword)#cria uma lista de "_" de tamanho correpondente.
 
-print(letter_list)
-print(underline)
+#print(letter_list)
+print(" ".join(underline))
 
-top   = [' ╠═══╦']
-base2 = [' ║ ','o']
-base1 = [' ║ ','/','|','\\']
-base  = ['_║_','/','','\\']
 count = 0
-tp  = ""
-bs2 = ""
-bs1 = ""
-bs  = ""
-
 while count < 6 and "_" in underline:
-    guess = input("Guess a letter.")
+    guess = input("Guess a letter.").lower()
         
     if guess in letter_list:
         num = -1
@@ -28,7 +19,7 @@ while count < 6 and "_" in underline:
             num += 1
             if guess == i:
                 underline[num] = guess
-                print(underline)
+                print(" ".join(underline))
     else:
         count += 1
         if count == 1:
@@ -36,38 +27,39 @@ while count < 6 and "_" in underline:
   ║   o
   ║  
  _║_     """)
-            print(underline)
+            print(" ".join(underline))
         if count == 2:
             print("""  ╠═══╦  
   ║   o
   ║   |
  _║_     """)
-            print(underline)
+            print(" ".join(underline))
         if count == 3:
             print("""  ╠═══╦  
   ║   o
   ║  /|
  _║_     """)
-            print(underline)
+            print(" ".join(underline))
         if count == 4:
             print("""  ╠═══╦  
   ║   o
   ║  /|\\
  _║_     """)
-            print(underline)
+            print(" ".join(underline))
         if count == 5:
             print("""  ╠═══╦  
   ║   o
   ║  /|\\
  _║_ /     """)
-            print(underline)
+            print(" ".join(underline))
         if count == 6:
             print("""  ╠═══╦  
   ║   o
   ║  /|\\
  _║_ / \    """)
             print("You lose!")
-            print(underline)
+            print(" ".join(underline))
+            print(" ".join(letter_list))
 
 if count < 6:
     print("You Win!")
