@@ -34,8 +34,9 @@ while count < 6 and "_" in underline:
     guess = input("\nGuess a letter.").lower()
     os.system('cls')#limpa o terminal
     if guess in guess_list:
-        print(stages[count - 1])
+        print(stages[count])
         print("\nYou already tried this one.")
+        print(" ".join(underline))
     else:      
         if guess in letter_list:
             num = -1
@@ -43,35 +44,23 @@ while count < 6 and "_" in underline:
                 num += 1
                 if guess == i:
                     underline[num] = guess
-            print(stages[count - 1])
+            print(stages[count])
             print(" ".join(underline))
         else:
-            count += 1
-           
-            if count == 1:
-                print(stages[count - 1])
-                print(" ".join(underline))
-            if count == 2:
-                print(stages[count - 1])
-                print(" ".join(underline))
-            if count == 3:
-                print(stages[count - 1])
-                print(" ".join(underline))
-            if count == 4:
-                print(stages[count - 1])
-                print(" ".join(underline))
-            if count == 5:
-                print(stages[count - 1])
-                print(" ".join(underline))
+            
             if count == 6:
-                print(stages[count - 1])
-                print("You lose!")
+                print(stages[count])
+                print("\nYou lose!")
+                print("\n"," ".join(letter_list))
                 print(" ".join(underline))
-                print(" ".join(letter_list))
+            else:
+                print(stages[count])
+                print("\n"," ".join(underline))
+            count += 1            
     guess_list += guess
     #print(guess_list)
 if count < 6:
-    print("You Win!")
+    print("\nYou Win!")
 
 #print('''  ╠═══╦  
 #           ║   o
