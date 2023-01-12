@@ -5,6 +5,8 @@ def prime_checker(number):
         print("It's a prime number.")
     elif number % 2 == 1 and number % 3 == 2 and number % 5 != 0:
         print("It's a prime number.")
+    elif number == 2:
+        print("It's a prime number.")    
     else:
         print("It's not a prime number.")        
 
