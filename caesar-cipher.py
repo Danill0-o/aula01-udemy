@@ -6,39 +6,30 @@ shift = int(input("Type the shift number:\n"))
 
 plain_text = list(text)
 num_list = []
-num_list_soma = []
 texto_encripitado = ""
 if direction == "encode":    
     #transforma palavra em índice.
     for i in plain_text:
         num_list.append(alphabet.index(i))
 
-    #soma o número de troca ao índice.
+    #soma o número de troca ao índice e converte o novo nº na letra correspondente.
     for soma in num_list:
         soma += shift
-        if soma > len(alphabet):
-            soma = (soma - len(alphabet))       
-        num_list_soma.append(soma)
-
-    #transforma índice em palavra.
-    for x in num_list_soma:
-        texto_encripitado += alphabet[x]
+        if soma >= len(alphabet):
+            soma = soma - len(alphabet)       
+        texto_encripitado += alphabet[soma]
 
 if direction == "decode":
     #transforma palavra em índice.
     for i in plain_text:
         num_list.append(alphabet.index(i))
 
-    #soma o número de troca ao índice.
+    #soma o número de troca ao índice e converte o novo nº na letra correspondente.
     for subtracao in num_list:
         subtracao -= shift
-        num_list_soma.append(subtracao)
+        texto_encripitado += alphabet[subtracao]
 
-    #transforma índice em palavra.
-    for x in num_list_soma:
-        texto_encripitado += alphabet[x]    
-
-print(plain_text, num_list, texto_encripitado, num_list_soma)
+print(plain_text, num_list, texto_encripitado)
 print(f"The encoded text is {texto_encripitado}")
 
 #Solução da Angela:
