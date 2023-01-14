@@ -32,8 +32,6 @@ if direction == "decode":
     #soma o número de troca ao índice.
     for subtracao in num_list:
         subtracao -= shift
-        #if subtracao < len(alphabet):
-        #    subtracao = (subtracao + len(alphabet))       
         num_list_soma.append(subtracao)
 
     #transforma índice em palavra.
