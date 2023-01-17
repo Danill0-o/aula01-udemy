@@ -3,11 +3,11 @@ import os
 
 print(logo)
 
-#gera um contador fora do arquivo.
+#gera um contador fora do arquivo que não reseta a cada execução.
 def add_counter():
-    if not os.path.isfile('counter.txt'):
-        open('counter.txt', 'w').close()
-    with open('counter.txt', 'r+') as f:
+    if not os.path.isfile('auction-house/counter.txt'):
+        open('auction-house/counter.txt', 'w').close()
+    with open('auction-house/counter.txt', 'r+') as f:
         counter = int(f.read() or 0) + 1
         f.seek(0)
         f.write(str(counter))
