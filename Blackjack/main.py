@@ -13,7 +13,16 @@ letras = {
     "J" : 10,
     "Ás" : 1
 }
-
-player_hand_naipe = random.choice(naipes)
-player_hand = random.choice(baralho)
-print(f" {player_hand} de {player_hand_naipe}")
+num = 0
+def compra():    
+    player_hand_naipe = random.choice(naipes)
+    player_hand = random.choice(baralho)
+    carta = f" {player_hand} de {player_hand_naipe}"
+    if player_hand in letras:
+        player_hand = int(letras[player_hand])
+    return carta
+  
+print(f"Your cards are: {compra()} and {compra()}")
+print(f"The Dealer's first card is: {compra()}")
+answer = input("Do you want to get another card? \n 1 - Yes\n 2 - No\n")
+print(num)
