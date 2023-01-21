@@ -1,0 +1,28 @@
+#skill-tree {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  #skill-tree ul {
+    list-style: none;
+  }
+  
+  #skill-tree li {
+    padding: 5px;
+  }
+  
+  #skill-tree li::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #333;
+    position: absolute;
+    left: -10px;
+    top: 5px;
+  }
+  
+  #skill-tree li ul {
+    margin-left: 20px;
+  }
