@@ -30,7 +30,7 @@ print(" ".join(underline))
 
 count = 0
 guess_list =[]
-while count < 6 and "_" in underline:
+while count < 6 and "_" in underline:    
     guess = input("\nGuess a letter.").lower()
     os.system('cls')#limpa o terminal
     if guess in guess_list:
