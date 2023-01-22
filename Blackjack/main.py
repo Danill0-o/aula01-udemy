@@ -1,4 +1,5 @@
 import random
+from logo import logo
 baralho = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
 naipes = ["Diamonds", "Hearts", "Clubs", "Spades"]
 letras = {
@@ -7,7 +8,7 @@ letras = {
     "J" : 10,
     "Ace" : 11
 }
-
+print(logo)
 def compra():    
     player_hand_naipe = random.choice(naipes)
     player_hand = random.choice(baralho)
