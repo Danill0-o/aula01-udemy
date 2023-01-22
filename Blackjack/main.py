@@ -27,6 +27,7 @@ carta1, card1 = compra()
 carta2, card2 = compra()
 dealers_carta1, dealers_card1 = compra()
 dealers_carta2, dealers_card2 = compra()
+
 print(f"Your cards are: {carta1} and {carta2}")
 print(f"You got: {card1 + card2}")
 print(f"The Dealer's first card is: {dealers_carta1}")
