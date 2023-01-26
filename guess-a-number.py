@@ -13,11 +13,9 @@ difficult = input("Choose a difficulty:\n 1 - Easy\n 2 - Medium\n 3 - Hard\n")
 def rand_number():
     rdn_num = random.randint(1,100)
     return rdn_num
-if difficult == "1":
-    rdn_num = rand_number()    
-    print("You choose 'Easy'\n")
-    lives = 10  
-    while True:
+def loop(life):
+     lives = life 
+     while True:
         if lives == 0:
             print("You've run out of attempts. You lose!")
             break      
@@ -31,42 +29,21 @@ if difficult == "1":
             lives -= 1
         else:
             print(f"You got it! The answer was {rdn_num}")
-            break        
+            break   
+life = 0
+if difficult == "1":
+    rdn_num = rand_number()    
+    print("You choose 'Easy'\n")     
+    life = 10
+    loop(life)       
+
 if difficult == "2":
     rdn_num = rand_number()    
     print("You choose 'Medium'\n")
-    lives = 7  
-    while True:
-        if lives == 0:
-            print("You've run out of attempts. You lose!")
-            break      
-        print(f"You have {lives} attempts remaining to guess the number.")
-        guess = int(input("Make a guess: "))
-        if guess > rdn_num:
-            print("Too high!")
-            lives -= 1
-        elif guess < rdn_num:
-            print("Too low!")
-            lives -= 1
-        else:
-            print(f"You got it! The answer was {rdn_num}")
-            break        
+    life = 7  
+    loop(life)       
 if difficult == "3":
     rdn_num = rand_number()    
     print("You choose 'Hard'\n")
-    lives = 5 
-    while True:
-        if lives == 0:
-            print("You've run out of attempts. You lose!")
-            break      
-        print(f"You have {lives} attempts remaining to guess the number.")
-        guess = int(input("Make a guess: "))
-        if guess > rdn_num:
-            print("Too high!")
-            lives -= 1
-        elif guess < rdn_num:
-            print("Too low!")
-            lives -= 1
-        else:
-            print(f"You got it! The answer was {rdn_num}")
-            break        
+    life = 5 
+    loop(life)
