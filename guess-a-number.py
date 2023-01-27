@@ -48,5 +48,5 @@ elif difficult == "3":
     life = 5 
     loop(life)
 else:
-    print("The games explodes!")
+    print("The games exploded!")
         
