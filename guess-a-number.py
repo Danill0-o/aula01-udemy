@@ -37,13 +37,16 @@ if difficult == "1":
     life = 10
     loop(life)       
 
-if difficult == "2":
+elif difficult == "2":
     rdn_num = rand_number()    
     print("You choose 'Medium'\n")
     life = 7  
     loop(life)       
-if difficult == "3":
+elif difficult == "3":
     rdn_num = rand_number()    
     print("You choose 'Hard'\n")
     life = 5 
     loop(life)
+else:
+    print("The games explodes!")
+        
