@@ -1,6 +1,7 @@
 import random
 
 # Initialize count variables
+common_count = 0
 rare_count = 0
 epic_count = 0
 legendary_count = 0
@@ -45,7 +46,11 @@ for i in range(100):
         epic_count += 1
     elif t_dmg >= 350:
         legendary_count += 1
+    else:
+        common_count += 1    
 # Print counts
+
+print("Common sword count:", common_count)
 print("Rare sword count:", rare_count)
 print("Epic sword count:", epic_count)
 print("Legendary sword count:", legendary_count)    
