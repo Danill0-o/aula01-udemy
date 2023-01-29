@@ -5,9 +5,8 @@ import os
 
 print(logo)
 def grab_data():
-    """Pega um dict aleatório na lista de dicts"""
-    grab_name = data[random.randint(0,len(data) -1)]
-    return grab_name
+    """Pega um dict aleatório na lista de dicts 'data[]'"""
+    return random.choice(data)
 
 score = 0
 loop_list = []
@@ -22,10 +21,9 @@ while True:
     print(vs)
 
     print(f"Compare B: {loop_list[1]['name']}, a {loop_list[1]['description']} from {loop_list[1]['country']}.")
-    #print(loop_list[0]['follower_count'], loop_list[1]['follower_count'])
-    guess = input("Who has more followers? 'A' or 'B'\n")
+    guess = input("Who has more followers? 'A' or 'B'\n").lower()
     
-    if guess == 'A':
+    if guess == 'a':
         if loop_list[0]['follower_count'] > loop_list[1]['follower_count']: #checa se o A é maior do que o B, se for, adiciona 1 ao score e remove o 2º item da lista
             score += 1
             print(f"You're right! Current score: {score}.\n")
@@ -35,8 +33,8 @@ while True:
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
             break
-    os.system('cls')        
-    if guess == 'B':
+           
+    if guess == 'b':
         if loop_list[0]['follower_count'] < loop_list[1]['follower_count']: #checa se o B é maior do que o A, se for, adiciona 1 ao score e remove o 1º item da lista, fazendo com que este se torne o 1º
             score += 1
             print(f"You're right! Current score: {score}.\n")
@@ -46,4 +44,5 @@ while True:
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
             break    
-    os.system('cls') 
+    os.system('cls')
+    print(logo) 
