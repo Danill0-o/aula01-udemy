@@ -1,39 +1,46 @@
 from art import logo, vs
-#from game_data import data
 from game_data import data
 import random
 
 print(logo)
 def grab_data():
-    compareA = data[random.randint(0,len(data) -1)]
-    compareB = data[random.randint(0,len(data) -1)]
+    grab_name = data[random.randint(0,len(data) -1)]
+    return grab_name
 
-    while compareA == compareB:
-        compareB = data[random.randint(0,len(data) -1)]
-    return compareA, compareB
 score = 0
-compareA, compareB = grab_data()
+loop_list = []
+loop_list.append(grab_data()) 
 while True:
-    print(f"Compare A: {compareA['name']}, a {compareA['description']} from {compareA['country']}.")
+    loop_list.append(grab_data())
+    while loop_list[0] == loop_list[1]:
+        loop_list.pop(1)
+        loop_list.append(grab_data())
+    print(f"Compare A: {loop_list[0]['name']}, a {loop_list[0]['description']} from {loop_list[0]['country']}.")
 
     print(vs)
 
-    print(f"Compare B: {compareB['name']}, a {compareB['description']} from {compareB['country']}.")
+    print(f"Compare B: {loop_list[1]['name']}, a {loop_list[1]['description']} from {loop_list[1]['country']}.")
+    print(loop_list[0]['follower_count'], loop_list[1]['follower_count'])
     guess = input("Who has more followers? 'A' or 'B'\n")
-
+    
     if guess == 'A':
-        if compareA['follower_count'] > compareB['follower_count']:
+        if loop_list[0]['follower_count'] > loop_list[1]['follower_count']:
             score += 1
             print(f"You're right! Current score: {score}.\n")
+            print(f"{loop_list[0]['name']} has {loop_list[0]['follower_count']} millions followers!")
+            print(f"{loop_list[1]['name']} has {loop_list[1]['follower_count']} millions followers!\n")
+            loop_list.pop(1)
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
             break    
     if guess == 'B':
-        if compareA['follower_count'] < compareB['follower_count']:
+        if loop_list[0]['follower_count'] < loop_list[1]['follower_count']:
             score += 1
             print(f"You're right! Current score: {score}.\n")
+            print(f"{loop_list[0]['name']} has {loop_list[0]['follower_count']} millions followers!")
+            print(f"{loop_list[1]['name']} has {loop_list[1]['follower_count']} millions followers!\n")
+            loop_list.pop(0)
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
             break    
-    print(f"{compareA['name']} has {compareA['follower_count']} millions followers!")
-    print(f"{compareB['name']} has {compareB['follower_count']} millions followers!\n")
+    
