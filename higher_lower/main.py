@@ -12,8 +12,8 @@ def grab_data():
         compareB = data[random.randint(0,len(data) -1)]
     return compareA, compareB
 score = 0
+compareA, compareB = grab_data()
 while True:
-    compareA, compareB = grab_data()
     print(f"Compare A: {compareA['name']}, a {compareA['description']} from {compareA['country']}.")
 
     print(vs)
@@ -21,7 +21,6 @@ while True:
     print(f"Compare B: {compareB['name']}, a {compareB['description']} from {compareB['country']}.")
     guess = input("Who has more followers? 'A' or 'B'\n")
 
-    
     if guess == 'A':
         if compareA['follower_count'] > compareB['follower_count']:
             score += 1
