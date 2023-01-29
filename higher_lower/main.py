@@ -1,6 +1,7 @@
 from art import logo, vs
 from game_data import data
 import random
+import os
 
 print(logo)
 def grab_data():
@@ -33,7 +34,8 @@ while True:
             loop_list.pop(1)
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
-            break    
+            break
+    os.system('cls')        
     if guess == 'B':
         if loop_list[0]['follower_count'] < loop_list[1]['follower_count']: #checa se o B é maior do que o A, se for, adiciona 1 ao score e remove o 1º item da lista, fazendo com que este se torne o 1º
             score += 1
@@ -44,4 +46,4 @@ while True:
         else:
             print(f"\nYou're wrong! You lose!\n Final score: {score}.")
             break    
-    
+    os.system('cls') 
