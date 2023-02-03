@@ -6,13 +6,7 @@ lungo = {'milk': 120, 'water': 80, 'coffee': 35}
 
 flavor_list = [espresso, latte, cappuccino, machiatto, lungo]
 flavor_names = ['Espresso', 'Latte', 'Cappuccino', 'Machiatto', 'Lungo']
-# flavor = {
-#     '1': espresso,
-#     '2': latte, 
-#     '3': cappuccino, 
-#     '4': machiatto, 
-#     '5': lungo,
-# }
+flavor_display = "\n 1- Espresso\n 2- Latte\n 3- Cappuccino\n 4- Machiatto\n 5- Lungo"
 
 tank = {
     'milk': 500,
