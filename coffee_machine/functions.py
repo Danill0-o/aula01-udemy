@@ -15,7 +15,6 @@ def check_flavor():
     out_stock_index = []
     flavor_names2 = flavor_names.copy()
     for i in flavor_list:    
-        
         for key in tank:
             if tank[key] < i[key]:
                 out_stock.append(flavor_names.pop(count))
@@ -27,12 +26,12 @@ def check_flavor():
         out_stock_index += str(flavor_names2.index(y) +1)
     
     print(f"The available flavors are: {flavor_display}")
-    print(out_stock_index)
+    #print(out_stock_index)
     if out_stock != []:
         print(f"Flavors out of stock: {', '.join(out_stock)}")
     if flavor_names == []:
         print("There is no flavors available, sorry.")
-        return False        
+        return False
     while True:
         choice = input("Choose the flavor that you want: ")
         if choice == '256':
@@ -43,31 +42,16 @@ def check_flavor():
             print("There is no such option.")
         else: 
             break  
-    choice = int(choice)      
-    print(f"You choose: {flavor_names2[choice -1]}. It will cost you ${flavor_list[choice -1]['price']}")
-    return choice -1    
-
-def check_money(choice):
-    print(choice)
-    print("Insert the coins below! ($1,00 and $0,50 only)")
-    print(coin_display)
-    value = int(input("How many coins of $1? "))
-    value += 0.5 * int(input("How many coins of $0,50? "))
-    print("Your inserted: ${:.2f}".format(value))  
-
-    if value > flavor_list[choice]['price']:
-        change = value - flavor_list[choice]['price']
-        print("Here is your change: ${:.2f}".format(change))
-    elif value < flavor_list[choice]['price']:
-        change = value - flavor_list[choice]['price']
-        print("It is missing: ${:.2f}, please insert the difference.".format(change))        
-    else:
-        print("Enjoy your drink!")
+    choice = int(choice) - 1      
+    print(f"You choose: {flavor_names2[choice]}. It will cost you ${flavor_list[choice]['price']}")
+    tank_update(choice)
+    return choice    
 
 def tank_update(choice):
     tank2 = {}
     for z in tank:
         tank2[z] = tank[z] - flavor_list[choice][z]
+    print(tank2)
     return tank2
 
 def check_tank(tank2):
@@ -83,3 +67,21 @@ def check_tank(tank2):
             print("Leaving the Admin Mode...")    
     else:
         print("Access denied!")    
+
+def check_money(choice):
+    print(choice)
+    print("Insert the coins below! ($1,00 and $0,50 only)")
+    print(coin_display)
+    value = int(input("How many coins of $1? "))
+    value += 0.5 * int(input("How many coins of $0,50? "))
+    print("Your inserted: ${:.2f}".format(value))  
+
+    if value > flavor_list[choice]['price']:
+        change = value - flavor_list[choice]['price']
+        print("Here is your change: ${:.2f}".format(change))
+        print("Enjoy your drink!")
+    elif value < flavor_list[choice]['price']:
+        change = value - flavor_list[choice]['price']
+        print("It is missing: ${:.2f}, please insert the difference.".format(change))        
+    else:
+        print("Enjoy your drink!")
