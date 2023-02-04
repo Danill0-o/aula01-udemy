@@ -1,2 +1,5 @@
 from functions import *
-check_flavor()
+
+choice = check_flavor()
+if choice != False:
+    check_money(choice)
