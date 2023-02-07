@@ -57,7 +57,7 @@ def tank_update(choice):
 def check_tank(tank2):
     print("Admin mode")
     password = getpass.getpass(prompt='Enter your password: ', stream=None)
-    if password == '6823':
+    if password == '1234':
         print("Access granted!")
         print(f"Here is the report of the supplies: {tank2}")
         refil = input("Do you want refil it? \n 1 - YES\n 2 - NO")
@@ -85,3 +85,15 @@ def check_money(choice):
         print("It is missing: ${:.2f}, please insert the difference.".format(change))        
     else:
         print("Enjoy your drink!")
+
+def tank_track(tank):
+    import os
+    tanks =[]
+    tanks.append(tank)
+    if not os.path.isfile('coffee_machine/tank_track.txt'):
+        open('coffee_machine/tank_track.txt', 'w').close()
+    with open('coffee_machine/tank_track.txt', 'r+') as f:
+        for tank in tanks:
+            f.write(f"milk: {tank['milk']}\n")
+            f.write(f"water: {tank['water']}\n")
+            f.write(f"coffee: {tank['coffee']}")
