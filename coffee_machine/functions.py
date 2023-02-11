@@ -14,10 +14,9 @@ def check_flavor():
     count = 0
     out_stock = []
     out_stock_index = []
-    flavor_names2 = flavor_names.copy()
-    #colocar essa parte dentro de uma função pra poder limpar o out_stock_index após abastecer com o Admin
     tank_updated = read_tank_track()
-    for i in flavor_list: #Checa se tem todos os ingredientes, se não tiver qqr ingrediente, insere na lista out_stock e pára.   
+    
+    for i in flavor_list: #Checa se há ingredientes suficientes, se não houver, insere na lista out_stock e pára.   
         for key in tank_updated:
             if tank_updated[key] < i[key]:
                 out_stock.append(flavor_names[count])
@@ -25,7 +24,7 @@ def check_flavor():
         count += 1
     
     for y in out_stock:
-        out_stock_index += str(flavor_names2.index(y) +1)
+        out_stock_index += str(flavor_names.index(y) +1)
     
     print(f"The available flavors are: {flavor_display}")
     if out_stock != []:
@@ -44,7 +43,7 @@ def check_flavor():
         else: 
             break  
     choice = int(choice) - 1      
-    print(f"You choose: {flavor_names2[choice]}. It will cost you ${flavor_list[choice]['price']}")
+    print(f"You choose: {flavor_names[choice]}. It will cost you ${flavor_list[choice]['price']}")
     tank_updated = tank_update(choice, tank_updated)
     tank_track(tank_updated)
     return choice    
@@ -52,8 +51,11 @@ def check_flavor():
 def tank_update(choice, tank_updated):
     """Atualiza o tanque de suprimentos após o uso."""
     for z in tank:
+        #if (tank_updated[z] - flavor_list[choice][z]) < 0:
+            #return tank_updated
+        
         tank_updated[z] = tank_updated[z] - flavor_list[choice][z]
-    #print(tank_updated)
+    print(tank_updated, "from tank update")
     return tank_updated
 
 def tank_admin_access(tank_updated):
@@ -72,7 +74,8 @@ def tank_admin_access(tank_updated):
             out_stock_index = []
             return tank_updated, out_stock_index, out_stock
         else:
-            print("Leaving the Admin Mode...")    
+            print("Leaving the Admin Mode...")
+            return tank_updated    
     else:
         print("Access denied!")    
 
@@ -117,13 +120,14 @@ def tank_track(tank_updated):
     import os
     tanks =[]
     tanks.append(tank_updated)
+    print(tanks, "from tank_track")
     if not os.path.isfile('coffee_machine/tank_track.txt'):
         open('coffee_machine/tank_track.txt', 'w').close()
-    with open('coffee_machine/tank_track.txt', 'r+') as f:
+    with open('coffee_machine/tank_track.txt', 'w') as f:
         for tank_updated in tanks:
-            f.write(f"milk: {tank_updated['milk']}\n")
-            f.write(f"water: {tank_updated['water']}\n")
-            f.write(f"coffee: {tank_updated['coffee']}")
+            f.write(f"milk: {int(tank_updated['milk'])}\n")
+            f.write(f"water: {int(tank_updated['water'])}\n")
+            f.write(f"coffee: {int(tank_updated['coffee'])}")
 
 def read_tank_track():
     """Transforma os dados do arquivo txt de volta para um dict."""
