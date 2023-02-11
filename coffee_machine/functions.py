@@ -2,6 +2,7 @@ from lists_and_dicts import *
 import datetime
 import getpass
 def check_flavor():
+    """Inicializa a máquina de café."""
     current_time = datetime.datetime.now().time()
     if current_time < datetime.time(12):
         print("Good morning.")
@@ -19,8 +20,7 @@ def check_flavor():
     for i in flavor_list: #Checa se tem todos os ingredientes, se não tiver qqr ingrediente, insere na lista out_stock e pára.   
         for key in tank_updated:
             if tank_updated[key] < i[key]:
-                out_stock.append(flavor_names[count])#tirei o .pop(count)
-                #count -= 1
+                out_stock.append(flavor_names[count])
                 break
         count += 1
     
@@ -36,7 +36,7 @@ def check_flavor():
     while True:
         choice = input("Choose the flavor that you want: ")
         if choice == '256':
-            tank_updated = tank_admin_access(tank_updated)
+            tank_updated, out_stock, out_stock_index = tank_admin_access(tank_updated)
         elif choice in out_stock_index:
             print("This flavor is out of stock for now, choose another one.")
         elif choice not in "1, 2, 3, 4, 5":
@@ -46,19 +46,18 @@ def check_flavor():
     choice = int(choice) - 1      
     print(f"You choose: {flavor_names2[choice]}. It will cost you ${flavor_list[choice]['price']}")
     tank_updated = tank_update(choice, tank_updated)
-    print(tank_updated, "maça")
     tank_track(tank_updated)
-    print(tank_updated, "banana")
     return choice    
 
 def tank_update(choice, tank_updated):
+    """Atualiza o tanque de suprimentos após o uso."""
     for z in tank:
         tank_updated[z] = tank_updated[z] - flavor_list[choice][z]
-    print(tank_updated,"vermifugo")
+    #print(tank_updated)
     return tank_updated
 
-#acessa o tanque em modo Admim para ver o status e reabastecer.
 def tank_admin_access(tank_updated):
+    """Acessa o tanque em modo Admim para ver o status e reabastecer."""
     print("Admin mode")
     password = getpass.getpass(prompt='Enter your password: ', stream=None)
     if password == '1234':
@@ -69,31 +68,52 @@ def tank_admin_access(tank_updated):
             tank_updated = tank
             tank_track(tank_updated)
             print("The tank is full", tank_updated)
-            return tank_updated
+            out_stock = []
+            out_stock_index = []
+            return tank_updated, out_stock_index, out_stock
         else:
             print("Leaving the Admin Mode...")    
     else:
         print("Access denied!")    
 
 def check_money(choice):
-    #print(choice)
+    """Confere o valor inserido, devolve o troco ou pede pela diferença, se o caso."""
     print("Insert the coins below! ($1,00 and $0,50 only)")
     print(coin_display)
+    value = 0
     value = int(input("How many coins of $1? "))
     value += 0.5 * int(input("How many coins of $0,50? "))
     print("Your inserted: ${:.2f}".format(value))  
-
+    change = value - flavor_list[choice]['price']
+    
     if value > flavor_list[choice]['price']:
-        change = value - flavor_list[choice]['price']
         print("Here is your change: ${:.2f}".format(change))
         print("Enjoy your drink!")
     elif value < flavor_list[choice]['price']:
-        change = value - flavor_list[choice]['price']
-        print("It is missing: ${:.2f}, please insert the difference.".format(change))        
+        print("It is missing: ${:.2f}, please insert the difference.".format(change))
+        more_money(change)
     else:
         print("Enjoy your drink!")
 
-def tank_track(tank_updated):#cria um arquivo txt e armazena os dados do tanque.
+def more_money(change):
+    """Pede pra inserir mais dinheiro em caso de o valor inserido ser menor do que o valor do produto."""
+    print(coin_display)
+    value = int(input("How many coins of $1? "))
+    value += 0.5 * int(input("How many coins of $0,50? "))
+    print("Your inserted: ${:.2f}".format(value))
+    change = value + change  
+
+    if change > 0:
+        print("Here is your change: ${:.2f}".format(change))
+        return print("Enjoy your drink!")
+    elif value == 0 or change < 0:
+        print("It is missing: ${:.2f}, please insert the difference.".format(change))
+        return more_money(change)
+    else:
+        return print("Enjoy your drink!")
+
+def tank_track(tank_updated):
+    """Cria um arquivo txt e armazena os dados do tanque."""
     import os
     tanks =[]
     tanks.append(tank_updated)
@@ -105,14 +125,14 @@ def tank_track(tank_updated):#cria um arquivo txt e armazena os dados do tanque.
             f.write(f"water: {tank_updated['water']}\n")
             f.write(f"coffee: {tank_updated['coffee']}")
 
-def read_tank_track():# transforma os dados do arquivo txt de volta para um dict.
+def read_tank_track():
+    """Transforma os dados do arquivo txt de volta para um dict."""
     tank_updated = {}
     with open('coffee_machine/tank_track.txt', 'r') as f:
         lines = f.readlines()
         for line in lines:
             key, value = line.strip().split(': ')
             tank_updated[key] = int(value)
-        print(tank_updated,"macarrao")    
     return tank_updated
 
 
